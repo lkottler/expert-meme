@@ -24,7 +24,7 @@ public class WordProcessor {
 	public static Stream<String> getWordStream(String filepath) throws IOException {
 		Stream<String> wordStream = 
 				Files.lines(Paths.get(filepath))
-				.filter(x -> x!=null && !x.matches("\\S"))
+				.filter(x -> x!=null && !x.matches("\\S")) //this way is more efficient by filtering before trimming
 				.map(String::trim)
 				// .filter(x -> x!=null && !x.equals(""));
 				.map(String::toUpperCase);
@@ -91,6 +91,27 @@ public class WordProcessor {
 	 * @return true if word1 and word2 are adjacent else false
 	 */
 	public static boolean isAdjacent(String word1, String word2) {
+		/* Forms of adjacency
+		 * 1. Substitution: One letter is substituted for a different.
+		 * 2. Addition: There is an extra letter.
+		 * 3. Subtaction: There is one less letter.
+		 */
+		int mistakesAllowed = 1;
+		int currMistakes = 0;
+		if (word1.equals(word2))
+			return true;
+		if (word1.length() == word2.length()) //Checks for substitution errors.
+			for (int i = 0; i < word1.length(); i++){
+				if (word1.charAt(i) != word2.charAt(i)){
+						currMistakes++;
+						if (currMistakes > mistakesAllowed)
+							return false;
+				}
+				
+			}
+		//TODO check for Addition / Subtraction
+		
+		
 		return false;	
 	}
 	
