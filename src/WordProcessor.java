@@ -22,6 +22,13 @@ public class WordProcessor {
 	 * @throws IOException exception resulting from accessing the filepath
 	 */
 	public static Stream<String> getWordStream(String filepath) throws IOException {
+		Stream<String> wordStream = 
+				Files.lines(Paths.get(filepath))
+				.filter(x -> x!=null && !x.matches("\\S"))
+				.map(String::trim)
+				// .filter(x -> x!=null && !x.equals(""));
+				.map(String::toUpperCase);
+		return wordStream;
 		/**
 		 * @see <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html">java.nio.file.Files</a>
 		 * @see <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Paths.html">java.nio.file.Paths</a>
@@ -64,8 +71,6 @@ public class WordProcessor {
 		 * Note: since map and filter return the updated Stream objects, they can chained together as:
 		 * 		streamOfLines.map(...).filter(a -> ...).map(...) and so on
 		 */
-		
-		return null;
 	}
 	
 	/**
