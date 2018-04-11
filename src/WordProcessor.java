@@ -114,15 +114,35 @@ public class WordProcessor {
 			}
 		
 		// Case: Addition / Subtraction
-		int lengthDiference = word1.length() - word2.length();
-		if (lengthDiference <= mistakesAllowed || lengthDiference >= mistakesAllowed*-1){ //if they are within bounds
-			String largerWord = (lengthDiference > 0) ? word1 : word2;
-			String smallerWord = (lengthDiference > 0) ? word2 : word1;
+		int diff = word1.length() - word2.length();
+		if ((diff <= mistakesAllowed && diff > 0) || (diff >= mistakesAllowed && diff < 0)){ //check bounds
+			String largerWord = (diff > 0) ? word1 : word2;
+			String smallerWord = (diff > 0) ? word2 : word1;
+			int tempMistakes = 0;
+			
+			for (int i = 0; i < smallerWord.length(); i++){
+				if (smallerWord.charAt(i) != largerWord.charAt(i-tempMistakes)){
+					tempMistakes++;
+				}	
+			}
+			currMistakes += tempMistakes;
+		}
+		
+		return (currMistakes < mistakesAllowed) ? true : false;
+		
+		/* Replaced Addition / Subtraction AI-esk guessing machine to calculate adjacency.
+		 * Scrapped due to complexity being unnecessary and likely irrelevant to this project.
+		 * 
+		int lengthDifference = word1.length() - word2.length();
+		if ((lengthDifference <= mistakesAllowed && lengthDifference > 0)
+			|| (lengthDifference >= mistakesAllowed*-1 && lengthDifference < 0)){ //if they are within bounds
+			String largerWord = (lengthDifference > 0) ? word1 : word2;
+			String smallerWord = (lengthDifference > 0) ? word2 : word1;
 			
 			boolean fixOrdering = false;
 			int smallFix = 0, largeFix = 0;
 			for (int i = 0; i < smallerWord.length(); i++){
-				if (fixOrdering){
+				if (fixOrdering){ //This will make a guess whether or not the word is offset forwards or backwards at the current found error.
 					int forwardMistakes = 0, backwardMistakes = 0;
 					for (int j = i + 1; j < smallerWord.length() - smallFix - 1; j++){
 						if (smallerWord.charAt(j - smallFix - 1) != largerWord.charAt(j - largeFix)){
@@ -143,7 +163,7 @@ public class WordProcessor {
 				}	
 			}
 		}
-		return (currMistakes < mistakesAllowed) ? true : false;
+		*/
 	}
 	
 }
