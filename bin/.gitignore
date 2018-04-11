@@ -1,5 +1,2 @@
-/Graph.class
-/GraphADT.class
-/GraphProcessor.class
-/GraphTest.class
-/WordProcessor.class
+/Node.class
+/Edge.class
