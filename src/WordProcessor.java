@@ -90,29 +90,60 @@ public class WordProcessor {
 	 * @param word2 second word
 	 * @return true if word1 and word2 are adjacent else false
 	 */
+	
 	public static boolean isAdjacent(String word1, String word2) {
 		/* Forms of adjacency
 		 * 1. Substitution: One letter is substituted for a different.
 		 * 2. Addition: There is an extra letter.
 		 * 3. Subtaction: There is one less letter.
 		 */
+		
 		int mistakesAllowed = 1;
 		int currMistakes = 0;
+		
+		// Case: equality
 		if (word1.equals(word2))
 			return true;
-		if (word1.length() == word2.length()) //Checks for substitution errors.
+		
+		// Case: substitution check
+		if (word1.length() == word2.length())
 			for (int i = 0; i < word1.length(); i++){
 				if (word1.charAt(i) != word2.charAt(i)){
 						currMistakes++;
-						if (currMistakes > mistakesAllowed)
-							return false;
 				}
-				
 			}
-		//TODO check for Addition / Subtraction
 		
-		
-		return false;	
+		// Case: Addition / Subtraction
+		int lengthDiference = word1.length() - word2.length();
+		if (lengthDiference <= mistakesAllowed || lengthDiference >= mistakesAllowed*-1){ //if they are within bounds
+			String largerWord = (lengthDiference > 0) ? word1 : word2;
+			String smallerWord = (lengthDiference > 0) ? word2 : word1;
+			
+			boolean fixOrdering = false;
+			int smallFix = 0, largeFix = 0;
+			for (int i = 0; i < smallerWord.length(); i++){
+				if (fixOrdering){
+					int forwardMistakes = 0, backwardMistakes = 0;
+					for (int j = i + 1; j < smallerWord.length() - smallFix - 1; j++){
+						if (smallerWord.charAt(j - smallFix - 1) != largerWord.charAt(j - largeFix)){
+							forwardMistakes++;
+						}
+						if (smallerWord.charAt(j - smallFix) != largerWord.charAt(j - largeFix - 1)){
+							backwardMistakes++;
+						}
+					}
+					if (forwardMistakes >= backwardMistakes)
+						smallFix++;
+					else { largeFix++;}
+					fixOrdering = false;
+				}
+				if (smallerWord.charAt(i-smallFix) != largerWord.charAt(i-largeFix)){
+					currMistakes++;
+					fixOrdering = true;
+				}	
+			}
+		}
+		return (currMistakes < mistakesAllowed) ? true : false;
 	}
 	
 }
