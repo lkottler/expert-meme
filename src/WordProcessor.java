@@ -102,10 +102,6 @@ public class WordProcessor {
 		int mistakesAllowed = 1;
 		int currMistakes = 0;
 		
-		// Case: equality
-		if (word1.equals(word2))
-			return true;
-		
 		// Case: substitution check
 		if (word1.length() == word2.length())
 			for (int i = 0; i < word1.length(); i++){
