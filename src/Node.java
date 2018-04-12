@@ -17,11 +17,14 @@ public class Node<E> {
 		return vertex;
 	}
 	
+	private void simpleAdd(Edge<E> edge){edges.add(edge);}
+	
 	public boolean addEdge(Node<E> node){
 		if (hasEdge(node)) {
 			return false;
 		}
 		Edge<E> newEdge = new Edge<>(this, node);
+		node.simpleAdd(newEdge);
 		return edges.add(newEdge);
 	}
 	
