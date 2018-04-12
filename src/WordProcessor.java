@@ -22,6 +22,7 @@ public class WordProcessor {
 	 * @throws IOException exception resulting from accessing the filepath
 	 */
 	public static Stream<String> getWordStream(String filepath) throws IOException {
+		// i like that deb gave us this method :)
 		Stream<String> wordStream = 
 				Files.lines(Paths.get(filepath))
 				.filter(x -> x!=null && !x.matches("\\S")) //this way is more efficient by filtering before trimming

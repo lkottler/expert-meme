@@ -1,2 +1,7 @@
-/Node.class
 /Edge.class
+/Graph.class
+/GraphADT.class
+/GraphProcessor.class
+/GraphTest.class
+/Node.class
+/WordProcessor.class
