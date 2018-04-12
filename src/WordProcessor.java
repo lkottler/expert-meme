@@ -125,7 +125,7 @@ public class WordProcessor {
 			currMistakes += tempMistakes;
 		}
 		
-		return (currMistakes < mistakesAllowed) ? true : false;
+		return (currMistakes <= mistakesAllowed) ? true : false;
 		
 		/* Replaced Addition / Subtraction AI-esk guessing machine to calculate adjacency.
 		 * Scrapped due to complexity being unnecessary and likely irrelevant to this project.
