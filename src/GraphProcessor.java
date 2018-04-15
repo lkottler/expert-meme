@@ -1,11 +1,8 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 /**
  * This class adds additional functionality to the graph as a whole.
@@ -109,11 +106,46 @@ public class GraphProcessor {
      * @param word2 second word
      * @return List<String> list of the words
      */
+    
     public List<String> getShortestPath(String word1, String word2) {
+    	Iterable<String> nodeList = graph.getAllVertices();
+    	HashSet<String> vertices = new HashSet<String>();
+    	HashMap<String, Integer> distances = new HashMap<String, Integer>();
+    	HashMap<String, String> previous = new HashMap<String, String>();
     	
+    	for (String s: nodeList){
+    		distances.put(s, Integer.MAX_VALUE);
+    		previous.put(s, null);
+    		vertices.add(s);
+    	}
     	
+    	distances.replace(word1, 0);  //Distance to source is 0.
     	
-        return null;
+    	while(!vertices.isEmpty()){
+    		String minWord = null;
+    		for (String s: vertices){
+    			minWord = (minWord == null) ? s : 
+    							 (distances.get(s) < distances.get(minWord)) ? s : minWord;
+    		}
+    		vertices.remove(minWord);
+    		
+    		for (String s: graph.getNeighbors(minWord)){
+    			int altPath = distances.get(minWord) + 1;
+    			if (altPath < distances.get(s)){
+    				distances.replace(s, altPath);
+    				previous.replace(s, minWord);
+    			}
+    		}
+    	}
+    	
+    	List<String> path = new ArrayList<String>();
+    	String currWord = word2;
+    	while (currWord != null){
+    		path.add(currWord);
+    		currWord = previous.get(currWord);
+    	}
+    	
+        return path;
     }
     
     /**
@@ -134,7 +166,37 @@ public class GraphProcessor {
      * @return Integer distance
      */
     public Integer getShortestDistance(String word1, String word2) {
-        return null;
+    	Iterable<String> nodeList = graph.getAllVertices();
+    	HashSet<String> vertices = new HashSet<String>();
+    	HashMap<String, Integer> distances = new HashMap<String, Integer>();
+    	HashMap<String, String> previous = new HashMap<String, String>();
+    	
+    	for (String s: nodeList){
+    		distances.put(s, Integer.MAX_VALUE);
+    		previous.put(s, null);
+    		vertices.add(s);
+    	}
+    	
+    	distances.replace(word1, 0);  //Distance to source is 0.
+    	
+    	while(!vertices.isEmpty()){
+    		String minWord = null;
+    		for (String s: vertices){
+    			minWord = (minWord == null) ? s : 
+    							 (distances.get(s) < distances.get(minWord)) ? s : minWord;
+    		}
+    		vertices.remove(minWord);
+    		
+    		for (String s: graph.getNeighbors(minWord)){
+    			int altPath = distances.get(minWord) + 1;
+    			if (altPath < distances.get(s)){
+    				distances.replace(s, altPath);
+    				previous.replace(s, minWord);
+    			}
+    		}
+    	}
+    	
+        return distances.get(word2);
     }
     
     /**
@@ -143,6 +205,35 @@ public class GraphProcessor {
      * Any shortest path algorithm can be used (Djikstra's or Floyd-Warshall recommended).
      */
     public void shortestPathPrecomputation() {
-    
+    	Iterable<String> nodeList = graph.getAllVertices();
+    	HashSet<String> vertices = new HashSet<String>();
+    	HashMap<String, Integer> distances = new HashMap<String, Integer>();
+    	HashMap<String, String> previous = new HashMap<String, String>();
+    	
+    	for (String s: nodeList){
+    		distances.put(s, Integer.MAX_VALUE);
+    		previous.put(s, null);
+    		vertices.add(s);
+    	}
+    	
+    	//distances.replace(word1, 0);  //Distance to source is 0.
+    	
+    	while(!vertices.isEmpty()){
+    		String minWord = null;
+    		for (String s: vertices){
+    			minWord = (minWord == null) ? s : 
+    							 (distances.get(s) < distances.get(minWord)) ? s : minWord;
+    		}
+    		vertices.remove(minWord);
+    		
+    		for (String s: graph.getNeighbors(minWord)){
+    			int altPath = distances.get(minWord) + 1;
+    			if (altPath < distances.get(s)){
+    				distances.replace(s, altPath);
+    				previous.replace(s, minWord);
+    			}
+    		}
+    	}
+    	
     }
 }
