@@ -7,10 +7,12 @@ public class Node<E> {
 	private E vertex;
 	private List<Edge<E>> edges;
 	private boolean isVisited;
+	private int distanceFromSource;
 	
 	public Node(E vertex){
 		this.vertex = vertex;
 		this.edges = new ArrayList<>();
+		distanceFromSource = Integer.MAX_VALUE;
 	}
 	
 	public E vertex(){
@@ -47,11 +49,16 @@ public class Node<E> {
 				.findFirst();
 	}
 	
-	public List<Edge<E>> edges() {return edges;       }
-	public int getEdgeCount()    {return edges.size();}
-	public boolean isVisited()   {return isVisited;}
+	public List<Edge<E>> edges()      {return edges;             }
+	public int getEdgeCount()         {return edges.size();      }
+	public boolean isVisited()        {return isVisited;         }
+	public int getDistanceFromSource(){return distanceFromSource;}
+	public List<Edge<E>> getEdges()   {return edges;             }
 	
-	public void setVisited(boolean isVisited){ this.isVisited = isVisited;}
+	public void setVisited(boolean isVisited)                {this.isVisited = isVisited;                  }
+	public void setDistanceFromSource(int distanceFromSource){this.distanceFromSource = distanceFromSource;}
+	public void setEdges(ArrayList<Edge<E>> edges)           {this.edges = edges;                          }
+	
 	
 	
 	
