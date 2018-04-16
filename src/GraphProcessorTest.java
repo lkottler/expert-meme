@@ -51,12 +51,18 @@ public class GraphProcessorTest {
 		Integer fill = graphP.populateGraph("wordlist.txt");
 		Integer expected = 441;
 		assertEquals("return value for number of words added", expected, fill);
-			
 	}
-	/*
-	/*
-	 * test getShortestPath(word1, word2)
-	 */
+	
+	 public void testGetShortestPath() {
+		 Integer fill = graphP.populateGraph("wordlist.txt");
+		 List<String> path = graphP.getShortestPath("cat", "wheat");
+		 ArrayList<String> expected = new ArrayList<String>();
+		 expected.add("cat");
+		 expected.add("hat");
+		 expected.add("heat");
+		 expected.add("wheat");
+		 assertEquals("shortest path", expected, path);
+	 }
 
 	/*
 	 * test getShortestDistance(word1, word2)
