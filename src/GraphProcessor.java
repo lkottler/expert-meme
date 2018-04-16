@@ -161,17 +161,18 @@ public class GraphProcessor {
 	    	HashMap<String, String> currNodePrevious = new HashMap<String, String>();
 	    	
 	    	for (String s: nodeList){
-		    	currNodeDistances.put(s, Integer.MAX_VALUE);
-		    	currNodePrevious.put(s, null);
-		    	vertices.add(s);
+	    		currNodeDistances.put(s, Integer.MAX_VALUE);
+	    		currNodePrevious.put(s, null);
+	    		vertices.add(s);
 	    	}
 	    	
 	    	currNodeDistances.replace(node, 0);  //Distance to source is 0.
 	    	
 	    	while(!vertices.isEmpty()){
-	    		String minWord = node; // minWord represents the node with the shortest distance to the source.
+	    		String minWord = null;
 	    		for (String s: vertices){
-	    			minWord = (currNodeDistances.get(s) < currNodeDistances.get(minWord)) ? s : minWord;
+	    			minWord = (minWord == null) ? s : 
+	    							 (currNodeDistances.get(s) < currNodeDistances.get(minWord)) ? s : minWord;
 	    		}
 	    		vertices.remove(minWord);
 	    		
