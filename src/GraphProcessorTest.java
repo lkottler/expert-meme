@@ -10,18 +10,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import org.junit.Test;
-
 /*/
- * Junit class to test the implementation of the GraphProcessor class.
+ * JUnit class to test the implementation of the GraphProcessor class.
  * See @GraphProcessor
  */
 public class GraphProcessorTest {
 
 	// instance variables here
+<<<<<<< HEAD
 	GraphProcessor stream = new GraphProcessor();
 	String fakeFile = "fake.txt";
 	
+=======
+	GraphProcessor graphP= new GraphProcessor();
+
+>>>>>>> ba4b9f1b74b6957d83cac4bbebed24a59cf9f2e9
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		
@@ -29,12 +32,12 @@ public class GraphProcessorTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-
+		
 	}
 
 	@Before
 	public void setUp() throws Exception {
-
+		
 	}
 
 	@After
@@ -43,9 +46,30 @@ public class GraphProcessorTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testPopulateGraph() {
+		Integer fill = graphP.populateGraph("wordlist.txt");
+		Integer expected = 441;
+		assertEquals("return value for number of words added", expected, fill);
 	}
+	@Test
+	 public void testGetShortestPath() {
+		 Integer fill = graphP.populateGraph("words.txt");
+		 List<String> path = graphP.getShortestPath("cat", "wheat");
+		 ArrayList<String> expected = new ArrayList<String>();
+		 expected.add("cat");
+		 expected.add("hat");
+		 expected.add("heat");
+		 expected.add("wheat");
+		 assertEquals("shortest path", expected, path);
+	 }
+	@Test
+	public void testGetShortestDistance() {
+		Integer fill = graphP.populateGraph("words.txt");
+		Integer dist= graphP.getShortestDistance("cat", "wheat");
+		Integer expected = 3;
+		assertEquals("shortest distance", expected, dist);
+	}
+<<<<<<< HEAD
 
 	@Test
 	public final void testFileNotFound() {
@@ -63,5 +87,7 @@ public class GraphProcessorTest {
 	/*
 	 * test getShortestDistance(word1, word2)
 	 */
+=======
+>>>>>>> ba4b9f1b74b6957d83cac4bbebed24a59cf9f2e9
 
 }

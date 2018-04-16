@@ -1,10 +1,9 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 /**
@@ -41,12 +40,16 @@ public class GraphProcessor {
      * Graph which stores the dictionary words and their associated connections
      */
     private GraphADT<String> graph;
+    private HashMap<String, HashMap<String, Integer>> distances; //HashMap<Source, HashMap<Target, Distance>>
+	private HashMap<String, HashMap<String, String>> previous;   //HashMap<Source, HashMap<Target, Previous>>
 
     /**
      * Constructor for this class. Initializes instances variables to set the starting state of the object
      */
     public GraphProcessor() {
         this.graph = new Graph<>();
+        distances = new HashMap<String, HashMap<String, Integer>>();
+        previous = new HashMap<String, HashMap<String, String>>();
     }
         
     /**
@@ -67,7 +70,10 @@ public class GraphProcessor {
         try {
 //			Stream<String> file = WordProcessor.getWordStream(filepath);
 //			for (String s : file..forEach(this.graph.addVertex(s)));
-        		String[] words = (String[]) WordProcessor.getWordStream(filepath).toArray();
+
+        		String[] words = WordProcessor.getWordStream(filepath).toArray(String[]::new);
+        		
+        		
         		for (int i = 0; i < words.length; i++) {
         			this.graph.addVertex(words[i]);
         		}
@@ -80,6 +86,7 @@ public class GraphProcessor {
         				}
         			}
         		}
+        		shortestPathPrecomputation();
             	return words.length;
         		
 		} catch (IOException e) {
@@ -109,11 +116,17 @@ public class GraphProcessor {
      * @param word2 second word
      * @return List<String> list of the words
      */
+    
     public List<String> getShortestPath(String word1, String word2) {
     	
-    	
-    	
-        return null;
+    	List<String> path = new ArrayList<String>();
+    	String currWord = word2;
+    	while (currWord != null){
+    		path.add(currWord);
+    		currWord = previous.get(word1).get(word2);
+    	}
+    	Collections.reverse(path);
+        return path;
     }
     
     /**
@@ -134,7 +147,7 @@ public class GraphProcessor {
      * @return Integer distance
      */
     public Integer getShortestDistance(String word1, String word2) {
-        return null;
+        return distances.get(word1).get(word2);
     }
     
     /**
@@ -143,6 +156,40 @@ public class GraphProcessor {
      * Any shortest path algorithm can be used (Djikstra's or Floyd-Warshall recommended).
      */
     public void shortestPathPrecomputation() {
-    
+    	HashMap<String, HashMap<String, Integer>> distances = new HashMap<String, HashMap<String, Integer>>(); //HashMap<Source, HashMap<Target, Distance>>
+    	HashMap<String, HashMap<String, String>> previous = new HashMap<String, HashMap<String, String>>();   //HashMap<Source, HashMap<Target, Previous>>
+    	Iterable<String> nodeList = graph.getAllVertices();
+    	
+    	for (String node : nodeList) {
+	    	HashSet<String> vertices = new HashSet<String>();
+	    	HashMap<String, Integer> currNodeDistances = new HashMap<String, Integer>();
+	    	HashMap<String, String> currNodePrevious = new HashMap<String, String>();
+	    	
+	    	for (String s: nodeList){
+		    	currNodeDistances.put(s, Integer.MAX_VALUE);
+		    	currNodePrevious.put(s, null);
+		    	vertices.add(s);
+	    	}
+	    	
+	    	currNodeDistances.replace(node, 0);  //Distance to source is 0.
+	    	
+	    	while(!vertices.isEmpty()){
+	    		String minWord = node; // minWord represents the node with the shortest distance to the source.
+	    		for (String s: vertices){
+	    			minWord = (currNodeDistances.get(s) < currNodeDistances.get(minWord)) ? s : minWord;
+	    		}
+	    		vertices.remove(minWord);
+	    		
+	    		for (String s: graph.getNeighbors(minWord)){
+	    			int altPath = currNodeDistances.get(minWord) + 1;
+	    			if (altPath < currNodeDistances.get(s)){
+	    				currNodeDistances.replace(s, altPath);
+	    				currNodePrevious.replace(s, minWord);
+	    			}
+	    		}
+	    	}
+	    	distances.put(node, currNodeDistances);
+	    	previous.put(node, currNodePrevious);
+    	}
     }
 }
