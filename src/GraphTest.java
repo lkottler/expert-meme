@@ -35,7 +35,7 @@ public class GraphTest {
 		vertices.add("neat");
 		vertices.add("major");
 		vertices.add("wheat");
-		vertices.add("streak");	
+		vertices.add("streak");
 		vertices.add("husband");
 		for (String vertex : vertices)
 			numOfVertices++;
