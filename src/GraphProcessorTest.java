@@ -19,10 +19,12 @@ import org.junit.Test;
 public class GraphProcessorTest {
 
 	// instance variables here
-
+	GraphProcessor stream = new GraphProcessor();
+	String fakeFile = "fake.txt";
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-
+		
 	}
 
 	@AfterClass
@@ -45,6 +47,11 @@ public class GraphProcessorTest {
 		fail("Not yet implemented");
 	}
 
+	@Test
+	public final void testFileNotFound() {
+		stream.populateGraph(fakeFile);
+		assertEquals("Tried populating graph with invalid file", stream, stream);
+	}
 	/*
 	 * test populateGraph(filepath)
 	 */
