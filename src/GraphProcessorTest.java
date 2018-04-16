@@ -22,6 +22,10 @@ public class GraphProcessorTest {
 	GraphProcessor graphP= new GraphProcessor();
 	Integer fill = graphP.populateGraph("wordlist.txt");
 
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+
+	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
