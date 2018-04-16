@@ -49,7 +49,8 @@ public class GraphProcessorTest {
 	@Test
 	public void testPopulateGraph() {
 		Integer fill = graphP.populateGraph("wordlist.txt");
-		assertEquals(fill, null);
+		Integer expected = 441;
+		assertEquals("return value for number of words added", expected, fill);
 			
 	}
 	/*
