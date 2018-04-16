@@ -82,6 +82,7 @@ public class GraphProcessor {
         				}
         			}
         		}
+        		shortestPathPrecomputation();
             	return words.length;
         		
 		} catch (IOException e) {
