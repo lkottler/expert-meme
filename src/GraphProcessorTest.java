@@ -17,17 +17,13 @@ import org.junit.Test;
 public class GraphProcessorTest {
 
 	// instance variables here
-<<<<<<< HEAD
-	GraphProcessor stream = new GraphProcessor();
-	String fakeFile = "fake.txt";
-	
-=======
+
 	GraphProcessor graphP= new GraphProcessor();
 
->>>>>>> ba4b9f1b74b6957d83cac4bbebed24a59cf9f2e9
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		
+
 	}
 
 	@AfterClass
@@ -69,13 +65,7 @@ public class GraphProcessorTest {
 		Integer expected = 3;
 		assertEquals("shortest distance", expected, dist);
 	}
-<<<<<<< HEAD
 
-	@Test
-	public final void testFileNotFound() {
-		stream.populateGraph(fakeFile);
-		assertEquals("Tried populating graph with invalid file", stream, stream);
-	}
 	/*
 	 * test populateGraph(filepath)
 	 */
@@ -87,7 +77,5 @@ public class GraphProcessorTest {
 	/*
 	 * test getShortestDistance(word1, word2)
 	 */
-=======
->>>>>>> ba4b9f1b74b6957d83cac4bbebed24a59cf9f2e9
 
 }
