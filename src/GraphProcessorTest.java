@@ -67,5 +67,12 @@ public class GraphProcessorTest {
 	/*
 	 * test getShortestDistance(word1, word2)
 	 */
+	
+	public void testGetShortestDistance() {
+		Integer fill = graphP.populateGraph("words.txt");
+		Integer dist= graphP.getShortestDistance("cat", "wheat");
+		Integer expected = 3;
+		assertEquals("shortest distance", expected, dist);
+	}
 
 }
