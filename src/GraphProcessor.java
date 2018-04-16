@@ -38,12 +38,17 @@ public class GraphProcessor {
      * Graph which stores the dictionary words and their associated connections
      */
     private GraphADT<String> graph;
+    private HashMap<String, Integer> distances;
+	private HashMap<String, String> previous;
 
     /**
      * Constructor for this class. Initializes instances variables to set the starting state of the object
      */
     public GraphProcessor() {
         this.graph = new Graph<>();
+        distances = new HashMap<String, Integer>();
+        previous = new HashMap<String, String>();
+        
     }
         
     /**
@@ -108,35 +113,6 @@ public class GraphProcessor {
      */
     
     public List<String> getShortestPath(String word1, String word2) {
-    	Iterable<String> nodeList = graph.getAllVertices();
-    	HashSet<String> vertices = new HashSet<String>();
-    	HashMap<String, Integer> distances = new HashMap<String, Integer>();
-    	HashMap<String, String> previous = new HashMap<String, String>();
-    	
-    	for (String s: nodeList){
-    		distances.put(s, Integer.MAX_VALUE);
-    		previous.put(s, null);
-    		vertices.add(s);
-    	}
-    	
-    	distances.replace(word1, 0);  //Distance to source is 0.
-    	
-    	while(!vertices.isEmpty()){
-    		String minWord = null;
-    		for (String s: vertices){
-    			minWord = (minWord == null) ? s : 
-    							 (distances.get(s) < distances.get(minWord)) ? s : minWord;
-    		}
-    		vertices.remove(minWord);
-    		
-    		for (String s: graph.getNeighbors(minWord)){
-    			int altPath = distances.get(minWord) + 1;
-    			if (altPath < distances.get(s)){
-    				distances.replace(s, altPath);
-    				previous.replace(s, minWord);
-    			}
-    		}
-    	}
     	
     	List<String> path = new ArrayList<String>();
     	String currWord = word2;
@@ -166,36 +142,6 @@ public class GraphProcessor {
      * @return Integer distance
      */
     public Integer getShortestDistance(String word1, String word2) {
-    	Iterable<String> nodeList = graph.getAllVertices();
-    	HashSet<String> vertices = new HashSet<String>();
-    	HashMap<String, Integer> distances = new HashMap<String, Integer>();
-    	HashMap<String, String> previous = new HashMap<String, String>();
-    	
-    	for (String s: nodeList){
-    		distances.put(s, Integer.MAX_VALUE);
-    		previous.put(s, null);
-    		vertices.add(s);
-    	}
-    	
-    	distances.replace(word1, 0);  //Distance to source is 0.
-    	
-    	while(!vertices.isEmpty()){
-    		String minWord = null;
-    		for (String s: vertices){
-    			minWord = (minWord == null) ? s : 
-    							 (distances.get(s) < distances.get(minWord)) ? s : minWord;
-    		}
-    		vertices.remove(minWord);
-    		
-    		for (String s: graph.getNeighbors(minWord)){
-    			int altPath = distances.get(minWord) + 1;
-    			if (altPath < distances.get(s)){
-    				distances.replace(s, altPath);
-    				previous.replace(s, minWord);
-    			}
-    		}
-    	}
-    	
         return distances.get(word2);
     }
     
@@ -207,8 +153,8 @@ public class GraphProcessor {
     public void shortestPathPrecomputation() {
     	Iterable<String> nodeList = graph.getAllVertices();
     	HashSet<String> vertices = new HashSet<String>();
-    	HashMap<String, Integer> distances = new HashMap<String, Integer>();
-    	HashMap<String, String> previous = new HashMap<String, String>();
+    	distances = new HashMap<String, Integer>();
+    	previous = new HashMap<String, String>();
     	
     	for (String s: nodeList){
     		distances.put(s, Integer.MAX_VALUE);
