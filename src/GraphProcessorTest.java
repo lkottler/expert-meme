@@ -20,11 +20,10 @@ public class GraphProcessorTest {
 
 	// instance variables here
 	GraphProcessor graphP= new GraphProcessor();
-	Integer fill = graphP.populateGraph("wordlist.txt");
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-
+		
 	}
 
 	@AfterClass
@@ -47,6 +46,11 @@ public class GraphProcessorTest {
 		fail("Not yet implemented");
 	}
 
+	@Test
+	public void testPopulateGraph() {
+		Integer fill = graphP.populateGraph("wordlist.txt");
+		fail("Failed to populate graph");
+	}
 	/*
 	/*
 	 * test getShortestPath(word1, word2)
