@@ -42,11 +42,6 @@ public class GraphProcessorTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testPopulateGraph() {
 		Integer fill = graphP.populateGraph("wordlist.txt");
 		Integer expected = 441;
@@ -63,10 +58,6 @@ public class GraphProcessorTest {
 		 expected.add("wheat");
 		 assertEquals("shortest path", expected, path);
 	 }
-
-	/*
-	 * test getShortestDistance(word1, word2)
-	 */
 	
 	public void testGetShortestDistance() {
 		Integer fill = graphP.populateGraph("words.txt");
