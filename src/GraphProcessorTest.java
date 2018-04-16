@@ -19,6 +19,8 @@ import org.junit.Test;
 public class GraphProcessorTest {
 
 	// instance variables here
+	GraphProcessor graphP= new GraphProcessor();
+	Integer fill = graphP.populateGraph("wordlist.txt");
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
