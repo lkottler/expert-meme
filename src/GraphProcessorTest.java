@@ -10,10 +10,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import org.junit.Test;
-
 /*/
- * Junit class to test the implementation of the GraphProcessor class.
+ * JUnit class to test the implementation of the GraphProcessor class.
  * See @GraphProcessor
  */
 public class GraphProcessorTest {
@@ -58,7 +56,7 @@ public class GraphProcessorTest {
 		 expected.add("wheat");
 		 assertEquals("shortest path", expected, path);
 	 }
-	
+	@Test
 	public void testGetShortestDistance() {
 		Integer fill = graphP.populateGraph("words.txt");
 		Integer dist= graphP.getShortestDistance("cat", "wheat");
