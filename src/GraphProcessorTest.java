@@ -49,7 +49,8 @@ public class GraphProcessorTest {
 	@Test
 	public void testPopulateGraph() {
 		Integer fill = graphP.populateGraph("wordlist.txt");
-		fail("Failed to populate graph");
+		if(fill.equals(null))
+			fail("Failed to populate graph");
 	}
 	/*
 	/*
