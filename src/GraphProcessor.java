@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * This class adds additional functionality to the graph as a whole.
@@ -69,7 +70,10 @@ public class GraphProcessor {
         try {
 //			Stream<String> file = WordProcessor.getWordStream(filepath);
 //			for (String s : file..forEach(this.graph.addVertex(s)));
-        		String[] words = (String[]) WordProcessor.getWordStream(filepath).toArray();
+
+        		String[] words = WordProcessor.getWordStream(filepath).toArray(String[]::new);
+        		
+        		
         		for (int i = 0; i < words.length; i++) {
         			this.graph.addVertex(words[i]);
         		}
