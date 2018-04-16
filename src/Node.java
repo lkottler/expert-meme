@@ -45,7 +45,7 @@ public class Node<E> {
 	
 	public Optional<Edge<E>> findEdge(Node<E> node) {
 		return edges.stream()
-				.filter(edge -> edge.isAdjacent(this,  node))
+				.filter(edge -> edge.isAdjacent(this, node))
 				.findFirst();
 	}
 	
