@@ -95,9 +95,12 @@ public class Graph<E> implements GraphADT<E> {
 	 * itself it self-edges may exist.
 	 */
 	public Iterable<E> getNeighbors(E vertex) {
+		if (vertex == null ) {
+			throw new NullPointerException();
+		}
 		List<E> list = new ArrayList<E>();
 		for (Node<E> node : adjacencyList.values()) {
-			if (getNode(vertex).hasEdge(node))
+			if (	getNode(vertex).hasEdge(node))
 				list.add(node.vertex());
 		}
 		return list;
