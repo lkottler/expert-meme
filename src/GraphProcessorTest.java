@@ -20,19 +20,15 @@ public class GraphProcessorTest {
 
 	// instance variables here
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-
-	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-
+		
 	}
 
 	@Before
 	public void setUp() throws Exception {
-
+		
 	}
 
 	@After
@@ -46,9 +42,6 @@ public class GraphProcessorTest {
 	}
 
 	/*
-	 * test populateGraph(filepath)
-	 */
-
 	/*
 	 * test getShortestPath(word1, word2)
 	 */
