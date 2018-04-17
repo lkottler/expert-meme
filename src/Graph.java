@@ -101,7 +101,11 @@ public class Graph<E> implements GraphADT<E> {
 		List<E> list = new ArrayList<E>();
 		for (Node<E> node : adjacencyList.values()) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (getNode(vertex).hasEdge(node) && !(vertex.equals(node)))
+=======
+			if (	getNode(vertex).hasEdge(node))
+>>>>>>> 34043ad0aade6ce8c55e396838010dfb653f6bab
 =======
 			if (	getNode(vertex).hasEdge(node))
 >>>>>>> 34043ad0aade6ce8c55e396838010dfb653f6bab
