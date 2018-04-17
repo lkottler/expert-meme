@@ -18,7 +18,7 @@ public class GraphProcessorTest {
 
 	// instance variables here
 
-	GraphProcessor graphP= new GraphProcessor();
+	GraphProcessor graphP;
 
 
 	@BeforeClass
@@ -33,22 +33,22 @@ public class GraphProcessorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
+		this.graphP = new GraphProcessor();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-
+		this.graphP = null;
 	}
 
 	@Test
-	public void testPopulateGraph() {
+	public final void testPopulateGraph() {
 		Integer fill = graphP.populateGraph("wordlist.txt");
 		Integer expected = 441;
 		assertEquals("return value for number of words added", expected, fill);
 	}
 	@Test
-	 public void testGetShortestPath() {
+	 public final void testGetShortestPath() {
 		 Integer fill = graphP.populateGraph("words.txt");
 		 List<String> path = graphP.getShortestPath("cat", "wheat");
 		 ArrayList<String> expected = new ArrayList<String>();
@@ -59,9 +59,9 @@ public class GraphProcessorTest {
 		 assertEquals("shortest path", expected, path);
 	 }
 	@Test
-	public void testGetShortestDistance() {
+	public final void testGetShortestDistance() {
 		Integer fill = graphP.populateGraph("words.txt");
-		Integer dist= graphP.getShortestDistance("cat", "wheat");
+		Integer dist = graphP.getShortestDistance("cat", "wheat");
 		Integer expected = 3;
 		assertEquals("shortest distance", expected, dist);
 	}
