@@ -22,7 +22,7 @@ public class Node<E> {
 	private void simpleAdd(Edge<E> edge){edges.add(edge);}
 	
 	public boolean addEdge(Node<E> node){
-		if (!hasEdge(node) || this == node) {
+		if (hasEdge(node) || this == node) {
 			return false;
 		}
 		Edge<E> newEdge = new Edge<E>(this, node);
