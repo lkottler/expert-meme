@@ -58,22 +58,30 @@ public class Graph<E> implements GraphADT<E> {
 		adjacencyList.remove(vertex);
 		return vertex;
 	}
-
 	// These functions use the Edge class to call their respective roles.
 	public boolean addEdge(E vertex1, E vertex2) {
+		if (!containsNode(vertex1) || !containsNode(vertex2)){
+			return false;
+		}
 		return getNode(vertex1).addEdge(getNode(vertex2));
 	}
 
 	public boolean removeEdge(E vertex1, E vertex2) {
+		if (!containsNode(vertex1) || !containsNode(vertex2)){
+			return false;
+		}
 		return getNode(vertex1).removeEdge(getNode(vertex2));
 	}
 
 	public boolean isAdjacent(E vertex1, E vertex2) {
+		if (!containsNode(vertex1) || !containsNode(vertex2)){
+			return false;
+		}
 		return getNode(vertex1).hasEdge(getNode(vertex2));
 	}
 
 	// This functions do nothing other than re-define how to call a function.
-	public boolean containsNode(E vertex) {
+	private boolean containsNode(E vertex) {
 		return adjacencyList.containsKey(vertex);
 	}
 
