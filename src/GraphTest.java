@@ -88,9 +88,7 @@ public class GraphTest {
 	@Test
 	public final void addVertexShouldNotAllowDuplicateVertexAddition() {
 		String vertex1 = this.graph.addVertex(vertices.get(0));
-		System.out.println("vertex1="+vertex1);
 		String vertex2 = this.graph.addVertex(vertices.get(0));
-		System.out.println("vertex2="+vertex2);
 		assertEquals("return value when adding duplicate vertex", null, vertex2);
 		
 		int verticesCount = 0;
@@ -151,8 +149,9 @@ public class GraphTest {
 				else if (itrVertex.equals(vertices.get(1)))
 					assertEquals(String.format("neighbor of vertex=%s", itrVertex), vertices.get(0), itrNeighbor);
 			}
-			if (itrVertex.equals(vertices.get(0)) || itrVertex.equals(vertices.get(1)))
+			if (itrVertex.equals(vertices.get(0))) {
 				assertEquals(String.format("number of neighbors for vertex=%s", itrVertex), 1, numOfEdges);
+			}
 			else
 				assertEquals(String.format("number of neighbors for vertex=%s", itrVertex), 0, numOfEdges);
 		}
@@ -188,8 +187,9 @@ public class GraphTest {
 				else if (itrVertex.equals(vertices.get(1)))
 					assertEquals(String.format("neighbor of vertex=%s", itrVertex), vertices.get(0), itrNeighbor);
 			}
-			if (itrVertex.equals(vertices.get(0)) || itrVertex.equals(vertices.get(1)))
+			if (itrVertex.equals(vertices.get(0))) {
 				assertEquals(String.format("number of neighbors for vertex=%s", itrVertex), 1, numOfEdges);
+			}
 			else
 				assertEquals(String.format("number of neighbors for vertex=%s", itrVertex), 0, numOfEdges);
 		}
@@ -221,8 +221,9 @@ public class GraphTest {
 				else if (itrVertex.equals(vertices.get(2)))
 					assertEquals(String.format("neighbor of vertex=%s", itrVertex), vertices.get(1), itrNeighbor);
 			}
-			if (itrVertex.equals(vertices.get(1)) || itrVertex.equals(vertices.get(2)))
+			if (itrVertex.equals(vertices.get(1))) {
 				assertEquals(String.format("number of neighbors for vertex=%s", itrVertex), 1, numOfEdges);
+			}
 			else
 				assertEquals(String.format("number of neighbors for vertex=%s", itrVertex), 0, numOfEdges);
 		}
@@ -294,8 +295,9 @@ public class GraphTest {
 				else if (itrVertex.equals(vertices.get(1)))
 					assertEquals(String.format("neighbor of vertex=%s", itrVertex), vertices.get(0), itrNeighbor);
 			}
-			if (itrVertex.equals(vertices.get(0)) || itrVertex.equals(vertices.get(1)))
+			if (itrVertex.equals(vertices.get(0))) {
 				assertEquals(String.format("number of neighbors for vertex=%s", itrVertex), 1, numOfEdges);
+			}
 			else
 				assertEquals(String.format("number of neighbors for vertex=%s", itrVertex), 0, numOfEdges);
 		}
