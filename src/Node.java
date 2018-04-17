@@ -1,3 +1,14 @@
+//////////////////// ALL ASSIGNMENTS INCLUDE THIS SECTION /////////////////////
+//
+// Title:           Node.java
+// Due Date:		April 16, 2018
+// Course:          CS 400, Spring, 2018
+//
+// Author:          Logan Kottler, Neeshan Khanikar, Kevin Kemp, Abby Kisicki
+// Email:           lkottler@wisc.edu, khanikar@wisc.edu, kkemp3@wisc.edu, kisicki@wisc.edu
+// Lecturer's Name: Deb Deppeler
+//
+/////////////////////////////// 80 COLUMNS WIDE ///////////////////////////////
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

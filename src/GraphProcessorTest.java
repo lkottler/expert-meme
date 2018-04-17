@@ -1,3 +1,14 @@
+//////////////////// ALL ASSIGNMENTS INCLUDE THIS SECTION /////////////////////
+//
+// Title:           GraphProcessorTest.java
+// Due Date:		April 16, 2018
+// Course:          CS 400, Spring, 2018
+//
+// Author:          Logan Kottler, Neeshan Khanikar, Kevin Kemp, Abby Kisicki
+// Email:           lkottler@wisc.edu, khanikar@wisc.edu, kkemp3@wisc.edu, kisicki@wisc.edu
+// Lecturer's Name: Deb Deppeler
+//
+/////////////////////////////// 80 COLUMNS WIDE ///////////////////////////////
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
@@ -41,12 +52,21 @@ public class GraphProcessorTest {
 		this.graphP = null;
 	}
 
+	
+	/*
+	 * test populateGraph(filepath)
+	 */
 	@Test
 	public final void testPopulateGraph() {
 		Integer fill = graphP.populateGraph("wordlist.txt");
 		Integer expected = 441;
 		assertEquals("return value for number of words added", expected, fill);
 	}
+	
+	
+	/*
+	 * test getShortestPath(word1, word2) by comparing it to an ArrayList that was manually implemented
+	 */
 	@Test
 	 public final void testGetShortestPath() {
 		 Integer fill = graphP.populateGraph("words.txt");
@@ -58,6 +78,11 @@ public class GraphProcessorTest {
 		 expected.add("wheat");
 		 assertEquals("shortest path", expected, path);
 	 }
+	
+	
+	/*
+	 * test getShortestDistance(word1, word2)
+	 */
 	@Test
 	public final void testGetShortestDistance() {
 		Integer fill = graphP.populateGraph("words.txt");
@@ -65,17 +90,5 @@ public class GraphProcessorTest {
 		Integer expected = 3;
 		assertEquals("shortest distance", expected, dist);
 	}
-
-	/*
-	 * test populateGraph(filepath)
-	 */
-
-	/*
-	 * test getShortestPath(word1, word2)
-	 */
-
-	/*
-	 * test getShortestDistance(word1, word2)
-	 */
 
 }
