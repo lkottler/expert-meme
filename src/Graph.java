@@ -36,7 +36,7 @@ public class Graph<E> implements GraphADT<E> {
 		// Check that the node being added is not already in the graph.
 		if (vertex == null || containsNode(vertex))
 			return null;
-		adjacencyList.put(vertex, new Node<>(vertex));
+		adjacencyList.put(vertex, new Node<E>(vertex));
 		return vertex;
 	}
 
@@ -95,9 +95,16 @@ public class Graph<E> implements GraphADT<E> {
 	 * itself it self-edges may exist.
 	 */
 	public Iterable<E> getNeighbors(E vertex) {
+		if (vertex == null ) {
+			throw new NullPointerException();
+		}
 		List<E> list = new ArrayList<E>();
 		for (Node<E> node : adjacencyList.values()) {
-			if (getNode(vertex).hasEdge(node))
+<<<<<<< HEAD
+			if (getNode(vertex).hasEdge(node) && !(vertex.equals(node)))
+=======
+			if (	getNode(vertex).hasEdge(node))
+>>>>>>> 34043ad0aade6ce8c55e396838010dfb653f6bab
 				list.add(node.vertex());
 		}
 		return list;
