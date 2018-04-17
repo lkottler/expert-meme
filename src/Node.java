@@ -25,7 +25,7 @@ public class Node<E> {
 		if (hasEdge(node) || this == node) {
 			return false;
 		}
-		Edge<E> newEdge = new Edge<>(this, node);
+		Edge<E> newEdge = new Edge<E>(this, node);
 		node.simpleAdd(newEdge);
 		return edges.add(newEdge);
 	}
